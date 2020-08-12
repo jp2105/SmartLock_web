@@ -28,10 +28,10 @@ export default function Home() {
 	useEffect(() => {
 		setloadingLock(true);
 		setloadingUnLock(true);
-		firebase.database().ref('/').once('value').then((snapshot) => {
+		firebase.database().ref('/').on('value',snapshot => {
 			setLock(snapshot.val().servo);
-			setloadingLock(false);
-			setloadingUnLock(false);
+				setloadingLock(false);
+				setloadingUnLock(false);
 		});
 	}, [])
 	const _onHandelLock = (status) => {
@@ -51,7 +51,6 @@ export default function Home() {
 				phone: data.phone,
 				time: new Date()
 			}
-			console.log(temp)
 			firebase.firestore().collection('logs').doc().set(temp)
 				.then(() => {
 					setLock(status)
@@ -62,10 +61,6 @@ export default function Home() {
 					}
 				}
 				).catch(e => console.log(e))
-
-
-
-
 		})
 	}
 

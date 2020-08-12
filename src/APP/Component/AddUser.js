@@ -27,7 +27,6 @@ export default function AddUser() {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const selector = useSelector(state => state.LoginReducer);
-	console.log(selector)
 	const classes = useStyles();
 	const _onClose = () => {
 		setDrawerIsOpen(false);
@@ -81,23 +80,13 @@ export default function AddUser() {
 		window.confirmationResult
 			.confirm(inputs.otp)
 			.then(function (result) {
-				console.log(result);
 				var data = { ...inputs, uid: result.user.uid }
-				console.log(data);
-				console.log(result.additionalUserInfo.isNewUser);
-				if (result.additionalUserInfo.isNewUser) {
 					firebase.firestore().collection('users').doc(result.user.uid).set(data)
 						.then(() => {
 							alert('User added');
 							history.push('/home')
 						}
 						).catch(e=>console.log(e))
-
-				} else {
-					alert('phone number already addded');
-					history.push('/home')
-				}
-
 			})
 			.catch(function (error) {
 				console.log(error)

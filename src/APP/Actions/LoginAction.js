@@ -18,7 +18,6 @@ export const LoginCheck = (data) => {
                             type: LOGINCHECK,
                             payload: data
                         })
-                        console.log(data)
                         localStorage.setItem('user', JSON.stringify(data))
                         return Promise.resolve('login success');
 

@@ -20,7 +20,8 @@ import firebase from 'firebase';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useHistory } from 'react-router-dom';
-import moment from 'moment'
+import moment from 'moment';
+import _ from 'lodash';
 
 export default function Logs() {
     const [DrawerIsOpen, setDrawerIsOpen] = useState(false);
@@ -47,7 +48,8 @@ export default function Logs() {
                         doc.forEach(temp => {
                             arr.push(temp.data());
                         })
-                        setAllLogs(arr.sort(_sorting));
+                        // moment((row.time.toDate())).format('MMM Do YYYY, h:mm:ss a')
+                        setAllLogs((_.sortBy(arr,['time'])).reverse());
                         setIsloading(false);
                     });
             } catch (e) {

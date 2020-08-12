@@ -9,7 +9,6 @@ export const LoginReducer = (state = usedata, action) => {
 		case SIGNUP:
 			return { user: action.payload }
 		case LOGINCHECK:
-			console.log(action)
 			return { user: action.payload }
 		default:
 				return state

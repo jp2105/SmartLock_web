@@ -27,7 +27,6 @@ export default function AllUsers() {
     const [isloading, setIsloading] = useState(true);
     const classes = useStyles();
     const history = useHistory();
-    console.log(useSelector(state => state.LoginReducer))
     useEffect(
         () => {
             var arr = [];
@@ -35,7 +34,6 @@ export default function AllUsers() {
                 firebase.firestore()
                     .collection("users")
                     .onSnapshot((doc) => {
-                        console.log('here')
                         doc.forEach(temp => {
                             arr.push(temp.data());
                         })
